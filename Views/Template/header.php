@@ -68,8 +68,6 @@
                 <li><a href="<?php echo base_url(); ?>Clientes/Listar"> <i class="fas fa-users"></i> <strong class="text-white"> Clientes </strong></a></li>
                 <?php if($_SESSION['rol'] == "Administrador"){ ?>
 				<li><a href="<?php echo base_url(); ?>Usuarios/Listar"> <i class="fas fa-user"></i> <strong class="text-white"> Usuarios </strong></a></li>
-
-                <li><a href="<?php echo base_url(); ?>Reportes/HistorialVentas"> <i class="fas fa-cogs"></i> <strong class="text-white"> Reportes </strong></a></li>
                 
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fas fa-shopping-cart"></i> <strong class="text-white"> Reportes </strong></a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

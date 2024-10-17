@@ -165,4 +165,37 @@ class VentasModel extends Mysql{
         $sql = "DELETE FROM detalle_temp WHERE id_usuario = $id_usuario";
         $resul = $this->delete($sql);
     }
+
+    public function getVentasPorSemana()
+    {
+        $sql = "SELECT DATE_FORMAT(fecha, '%Y-%m-%d') as fecha, SUM(total) as total
+                FROM ventas
+                WHERE estado = 1
+                GROUP BY fecha
+                ORDER BY fecha DESC
+                LIMIT 7"; // Obtener las últimas 7 días
+        return $this->select_all($sql);
+    }
+
+    public function getVentasPorMes()
+    {
+        $sql = "SELECT DATE_FORMAT(fecha, '%Y-%m') as fecha, SUM(total) as total
+                FROM ventas
+                WHERE estado = 1
+                GROUP BY fecha
+                ORDER BY fecha DESC
+                LIMIT 12"; // Obtener los últimos 12 meses
+        return $this->select_all($sql);
+    }
+
+    public function getProductosMasAdquiridos()
+    {
+        $sql = "SELECT id_producto, COUNT(id_producto) as cantidad
+                FROM detalle_venta
+                GROUP BY id_producto
+                ORDER BY cantidad DESC
+                LIMIT 5"; // Obtener los 5 productos más vendidos
+        return $this->select_all($sql);
+    }
+
 }
